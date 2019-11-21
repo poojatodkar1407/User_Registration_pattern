@@ -7,10 +7,13 @@ read -p "Enter Last name: " lastName
 read -p "Enter Email Id of user name: " emailId
 read -p "Enter Mobile number: " mobileNumber
 read -p "Enter password: " password
+
 namePattern="^[A-Z]{1}[a-z]{2,}$"
 emailPattern="^[a-zA-Z0-9][-._+a-zA-Z0-9]*[@]{1}[a-z0-9A-Z]*[.]{1}[a-z]{2,3}[.]{0,1}([a-z]{2,3}){0,1}$"
 mobilePattern="^[0-9]{2}[[:space:]][0-9]{10}$"
 passwordPattern="^[a-zA-Z]{8}"
+passwordPattern1="([A-Z]+[a-z]*)+|([a-z]*[A-Z]+)+|([a-z]*[A-Z]+[a-z]*)+)"
+#qw="^*[a-z]*[A-Z]{8,}$"
 function firstNameValidation(){
 
 	if [[ $firstName =~ $namePattern ]]
@@ -53,17 +56,19 @@ function mobileNumberValidation(){
 }
 
 function passwordValidation(){
+	
+	if [[ $password =~ $emailpattern1  ]] &&  [[ ${#password} -ge 8 ]]
+        then
+                echo "Valid $password"
+        else
+                echo "Invalid $password"
+        fi
 
-	if [[ $password =~ $passwordPattern ]]
-	then 
-		echo "Valid $password"
-	else
-		echo "Invalid $password"
-	fi
+
 }
 
-firstNameValidation
-lastNameValidation
-emailIdValidation
-mobileNumberValidation
+#firstNameValidation
+#lastNameValidation
+#emailIdValidation
+#mobileNumberValidation
 passwordValidation
